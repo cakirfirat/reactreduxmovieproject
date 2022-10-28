@@ -1,11 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -35,4 +27,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+.clearfix {
+  clear:both;
+  margin-bottom: 10px;
+}
+
+.inlineError{
+  color: #f44336
 }
