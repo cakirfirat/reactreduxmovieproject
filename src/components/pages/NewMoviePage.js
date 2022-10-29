@@ -1,46 +1,41 @@
 import React, {Component} from 'react';
 import NewMovieForm from "../NewMovieForm";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {onNewMovieSubmit} from "../../actions/newMovie";
 import {useParams} from "react-router-dom";
+import {withRouter} from "../../withRouter";
 
-class NewMoviePage extends Component {
-constructor(props) {
-    super(props);
-    this.state = {}
-}
+function NewMoviePage(props) {
+    const {Id} = useParams();
 
 
-    render() {
-        return (
-            <div>
-                <h2>New Movie</h2>
-                {console.log(this.props)}
+    return (
+        <div>
+            <h2>New Movie</h2>
             <NewMovieForm
-                movie={this.props.movie}
-                newMovie={this.props.newMovie}
-                onNewMovieSubmit={this.props.onNewMovieSubmit}/>
+                movie={props.movie}
+                newMovie={props.newMovie}
+                onNewMovieSubmit={props.onNewMovieSubmit}
+                Id={Id}
+            />
 
-            </div>
-        );
-    }
+        </div>
+    );
 }
 
-
-
-const mapStateToProps = ({ newMovie, movies },props) => {
-    console.log(props)
+const mapStateToProps = ({ newMovie, movies }, props) => {
+const ids = props.params.Id
+    console.log(ids)
     return {
         newMovie,
-        movie: 1
-            //console.log(movies.movieList.find(item => item.Id ===))
-            //movies.movieList.find(item => item.Id === props.match.params.Id)
-
+        movie:movies.movieList.find(item => item.Id === ids)
+        //movie: 1//movies.movieList.find(item => item._id === props.match.params._id)
     }
+
 };
 const mapDispatchToProps = {
     onNewMovieSubmit
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewMoviePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewMoviePage));
