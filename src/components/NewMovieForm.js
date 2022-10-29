@@ -9,10 +9,10 @@ import { Navigate } from "react-router-dom";
 
 
 class NewMovieForm extends Component {
-
+    
     state = {
-        title: this.props.movie ? this.props.movie.title : '',
-        cover: this.props.movie ? this.props.movie.cover : '',
+        title: this.props.movie ? this.props.movie.Title : '',
+        cover: this.props.movie ? this.props.movie.Cover : '',
         error: {},
         redirect: false
     };

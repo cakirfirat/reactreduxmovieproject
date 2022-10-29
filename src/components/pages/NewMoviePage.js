@@ -25,10 +25,10 @@ function NewMoviePage(props) {
 
 const mapStateToProps = ({ newMovie, movies }, props) => {
 const ids = props.params.Id
-    console.log(ids)
+    console.log(movies.movieList[1])
     return {
         newMovie,
-        movie:movies.movieList.find(item => item.Id === ids)
+        movie: movies.movieList[1]
         //movie: 1//movies.movieList.find(item => item._id === props.match.params._id)
     }
 
