@@ -17,4 +17,4 @@ Backendi çalıştırmak için go paketini yüklemeyi unutmayın! [Go Kurulumu](
 
 ### Yapılacaklar
 
-Proje ilerleyen süreçte güncellenecek ve son aşamada Typescript olarak devam edecektir.
+Proje ilerleyen süreçte güncellenecek ve son aşamada Typescript olarak devam edecektir...
