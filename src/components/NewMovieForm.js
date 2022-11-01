@@ -11,6 +11,7 @@ import { Navigate } from "react-router-dom";
 class NewMovieForm extends Component {
     
     state = {
+        id: this.props.movie ? this.props.movie.Id : '',
         title: this.props.movie ? this.props.movie.Title : '',
         cover: this.props.movie ? this.props.movie.Cover : '',
         error: {},
@@ -26,6 +27,7 @@ class NewMovieForm extends Component {
         if(nextProps.newMovie.movie[0]){
             const movie = nextProps.newMovie.movie[0];
             this.setState({
+                id: movie.Id,
                 title: movie.Title,
                 cover: movie.Cover
             })
@@ -46,9 +48,22 @@ class NewMovieForm extends Component {
             redirect: true
         });
 
+
+        const Id = this.state?.id || this.props.newMovie.movie[0]?.Id;
+
         if(Object.keys(error).length === 0) {
-            this.props.onNewMovieSubmit(this.state);
-            this.setState({title:'',cover:''})
+
+
+            if(!Id){
+                this.setState({title:'',cover:'',id:''})
+                this.props.onNewMovieSubmit(this.state);
+
+
+
+            }else{
+                this.props.onUpdateMovieSubmit({...this.state,Id});
+
+            }
         }
     };
     validate = () => {
