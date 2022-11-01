@@ -21,6 +21,18 @@ class NewMovieForm extends Component {
         onNewMovieSubmit: PropTypes.func.isRequired
     };
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+
+        if(nextProps.newMovie.movie[0]){
+            const movie = nextProps.newMovie.movie[0];
+            this.setState({
+                title: movie.Title,
+                cover: movie.Cover
+            })
+        }
+
+    }
+
     handleChange= (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -49,7 +61,7 @@ class NewMovieForm extends Component {
     render(){
         const {error} = this.state;
         const form = (
-            <Form onSubmit={this.onSubmit} loading={this.props.newMovie.fetching ? true : false}>
+            <Form onSubmit={this.onSubmit} loading={this.props.newMovie.fetching || this.props.newMovie.movie.fetching ? true : false}>
                 <Form.Field error={error.title ? true : false}>
                     <label>Movie Title</label>
                     {error.title && <InlineError message={error.title}/>}
