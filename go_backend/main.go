@@ -3,12 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"sort"
 	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -19,6 +18,7 @@ func main() {
 	r.HandleFunc("/api/movies", GetMoviesHandler).Methods("GET")
 	r.HandleFunc("/api/deletemovie", DeleteMovieHandler).Methods("POST")
 	r.HandleFunc("/api/getmovie", GetMovieByIdHandler).Methods("POST")
+	r.HandleFunc("/api/updatemovie/{id}", UpdateMovieHandler).Methods("POST")
 
 	server := &http.Server{
 		Addr:    ":8095",
@@ -129,4 +129,32 @@ func GetMovieByIdHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
+}
+
+func UpdateMovieHandler(w http.ResponseWriter, r *http.Request) {
+	//var err error
+
+	var movie Movie
+
+	vars := mux.Vars(r)
+
+	title := r.FormValue("title")
+	cover := r.FormValue("cover")
+
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		fmt.Println("hata id")
+	}
+
+	if _, ok := movieStore[id]; ok {
+		movie.Id = id
+		movie.Title = title
+		movie.Cover = cover
+		delete(movieStore, id)
+		movieStore[id] = movie
+	} else {
+		log.Printf("Değer bulunamadı : %s", id)
+	}
+	w.WriteHeader(http.StatusOK)
+
 }
