@@ -1,9 +1,9 @@
 import React from 'react'
-import { Card, Image, Grid, Placeholder, Button, Icon } from 'semantic-ui-react'
+import { Card, Grid, Button, Icon } from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 
 
-const extra = movie => {
+const extra = (movie,deleteMovie) => {
     return (
         <div>
             <Button fluid animated as={Link} to={`/movie/${movie.Id}`}>
@@ -13,7 +13,7 @@ const extra = movie => {
                 </Button.Content>
             </Button>
             <br/>
-            <Button fluid animated='vertical' color='red'>
+            <Button fluid animated='vertical' onClick={()=>deleteMovie(movie.Id)} >
                 <Button.Content hidden>Delete</Button.Content>
                 <Button.Content visible>
                     <Icon name='trash' />
@@ -22,7 +22,7 @@ const extra = movie => {
         </div>
     )
 };
-const MovieCard = ({movie}) => (
+const MovieCard = ({movie,deleteMovie}) => (
 
     <Grid.Column>
         <Card>
@@ -31,7 +31,7 @@ const MovieCard = ({movie}) => (
                         image={movie.Cover}
                         header={movie.Title}
                         description="Example"
-                        extra={extra(movie)}
+                        extra={extra(movie,deleteMovie)}
                     />
 
 

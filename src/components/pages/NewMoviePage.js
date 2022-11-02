@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import NewMovieForm from "../NewMovieForm";
 import {connect} from "react-redux";
-import {onNewMovieSubmit,fetchMovie,onUpdateMovieSubmit} from "../../actions/newMovie";
+import {onNewMovieSubmit, fetchMovie, onUpdateMovieSubmit} from "../../actions/newMovie";
 import {useParams} from "react-router-dom";
 import {withRouter} from "../../withRouter";
 
@@ -34,7 +34,6 @@ const mapStateToProps = ({ newMovie, movies }, props) => {
     return {
         newMovie,
         movie: movies.movieList.find(item => item.Id == props.params.Id)
-        //movie: 1//movies.movieList.find(item => item._id === props.match.params._id)
     }
 
 };

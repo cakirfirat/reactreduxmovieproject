@@ -1,12 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import movies from "../reducers/movies";
 import MovieCard from "./MovieCard";
 import {Grid} from "semantic-ui-react";
-import {HashLoader} from "react-spinners";
 import MovieCardPlaceholder from "./placeholders/MovieCardPlaceholder";
 
-const MoviesList = ({movies}) => {
+const MoviesList = ({movies,deleteMovie}) => {
     const emptyMessage = (
         <div className='alert alert-danger'>
             There are no movies yet.
@@ -22,7 +20,7 @@ const MoviesList = ({movies}) => {
                     :
                     <Grid stackable columns={3}>
                         {
-                            loading ? movies.movieList.map(movie=> <MovieCardPlaceholder key={movie.Id}/>) : movies.movieList.map(movie=> <MovieCard key={movie.Id} movie={movie}/>)
+                            loading ? movies.movieList.map(movie=> <MovieCardPlaceholder key={movie.Id}/>) : movies.movieList.map(movie=> <MovieCard key={movie.Id} movie={movie} deleteMovie={deleteMovie} />)
                         }
                     </Grid>
             }

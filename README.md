@@ -14,6 +14,10 @@ Proje Redux v6 doğrultusunda güncellenmiştir. Backend sıfırdan go ile yazı
 
 Backendi çalıştırmak için go paketini yüklemeyi unutmayın! [Go Kurulumu](https://go.dev/learn/).
 
+Go backende veritabanı ihtiyacı bulunmadığı için doğrudan
+### `go run main.go`
+komutuyla backendi ayağa kaldırabilirsiniz. (go map özelliği bizim için veri depolama görevi görmektedir.)
+
 
 ### Yapılacaklar
 

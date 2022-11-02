@@ -12,6 +12,7 @@ export const UPDATE_MOVIE_PENDING = "UPDATE_MOVIE_PENDING";
 
 
 
+
 export function onNewMovieSubmit({title,cover}) {
     console.log(title,cover)
 
